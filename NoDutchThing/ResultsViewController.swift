@@ -28,6 +28,9 @@ class ResultsViewController: UIViewController {
         payNowButton.alpha = 0.3 // TODO: Change
         payNowButton.addTarget(self, action: #selector(ResultsViewController.payNowButtonTapped(_:)), forControlEvents: .TouchUpInside)
         self.view.addSubview(payNowButton)
+        
+        
+        self.view.backgroundColor = UIColor.whiteColor()
     }
     
     func payNowButtonTapped(sender: UIButton!) {

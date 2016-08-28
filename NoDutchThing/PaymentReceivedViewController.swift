@@ -18,6 +18,8 @@ class PaymentReceivedViewController: UIViewController {
         thankYouImageView.frame = self.view.frame
         
         self.view.addSubview(thankYouImageView)
+        
+        self.view.backgroundColor = UIColor.whiteColor()
     }
 
     override func didReceiveMemoryWarning() {
