@@ -13,6 +13,7 @@ class StakesSelectViewController: UIViewController {
     var isLeft: Bool = true
 
     var sceneImageView: UIImageView?
+    var headerImageView: UIImageView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +26,16 @@ class StakesSelectViewController: UIViewController {
         
         self.view.addSubview(sceneImageView!)
 
+        
+        headerImageView = UIImageView(image: UIImage(named:"StakesHeader"))
+        headerImageView!.frame = CGRect(x:0.0, y:0.0, width:self.view.frame.width, height:181.0 / 2.0)
+        
+        headerImageView!.layer.shadowColor = UIColor.blackColor().CGColor
+        headerImageView!.layer.shadowOpacity = 1
+        headerImageView!.layer.shadowOffset = CGSizeZero
+        headerImageView!.layer.shadowRadius = 3
+        
+        self.view.addSubview(headerImageView!)
 
         
         let selectStakesButton = UIButton()
@@ -46,7 +57,7 @@ class StakesSelectViewController: UIViewController {
         let destX = isLeft ? CGFloat(-320.0) : CGFloat(0.0)
         isLeft = !isLeft
         
-        UIView.animateWithDuration(1.5, animations: {
+        UIView.animateWithDuration(0.5, animations: {
             
             self.sceneImageView!.transform = CGAffineTransformTranslate(CGAffineTransformIdentity, destX, 0.0)
             

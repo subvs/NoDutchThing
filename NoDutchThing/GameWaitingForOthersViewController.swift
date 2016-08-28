@@ -23,7 +23,7 @@ class GameWaitingForOthersViewController: UIViewController {
         //self.view.backgroundColor = UIColor.greenColor() //
         
         let spinnerDimension = CGFloat(200.0)
-        let spinnerFrame = CGRect(x: self.view.frame.width / 2.0 - spinnerDimension / 2.0, y: self.view.frame.height / 2.0 - spinnerDimension / 2.0, width: spinnerDimension, height: spinnerDimension)
+        let spinnerFrame = CGRect(x: self.view.frame.width / 2.0 - spinnerDimension / 2.0, y: self.view.frame.height / 2.0 - spinnerDimension / 2.0 + 150.0, width: spinnerDimension, height: spinnerDimension)
         
         let spinnerView = UIActivityIndicatorView(frame: spinnerFrame)
         spinnerView.transform = CGAffineTransformMakeScale(2.0, 2.0);

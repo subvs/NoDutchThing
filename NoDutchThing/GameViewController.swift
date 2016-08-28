@@ -33,6 +33,8 @@ class GameViewController: UIViewController {
     let playerDimension = CGFloat(50.0)
     let enemyDimension = CGFloat(60.0)
     
+    let enemyRenderDimension = CGFloat(90.0)
+    
     var counter = 0
     
     
@@ -122,7 +124,7 @@ class GameViewController: UIViewController {
         //enemyView!.backgroundColor = UIColor.redColor()
         //self.view.addSubview(enemyView!)
         
-        enemyImageView!.frame = CGRect(x: enemyPositionPrime.x - enemyDimension / 2.0, y: enemyPositionPrime.y - enemyDimension / 2.0, width: enemyDimension, height: enemyDimension)
+        enemyImageView!.frame = CGRect(x: enemyPositionPrime.x - enemyRenderDimension / 2.0, y: enemyPositionPrime.y - enemyRenderDimension / 2.0, width: enemyRenderDimension, height: enemyRenderDimension)
         
         
         // Collision Check
@@ -149,10 +151,14 @@ class GameViewController: UIViewController {
             i++
         }
         
-        enemyImageView = UIImageView(frame: CGRect(x: enemyPosition.x - enemyDimension / 2.0, y: enemyPosition.y - enemyDimension / 2.0, width: enemyDimension, height: enemyDimension))
+        
+        
+        enemyImageView = UIImageView(frame: CGRect(x: enemyPosition.x - enemyRenderDimension / 2.0, y: enemyPosition.y - enemyRenderDimension / 2.0, width: enemyRenderDimension, height: enemyRenderDimension))
         enemyImageView!.image = UIImage(named: "Enemy")
         //enemyImageView!.backgroundColor = UIColor.redColor() //
         self.view.addSubview(enemyImageView!)
+        
+        
     }
     
     func gameOver() {
