@@ -35,8 +35,11 @@ class GameViewController: UIViewController {
     
     let enemyRenderDimension = CGFloat(90.0)
     
+    let playerRenderDimension = CGFloat(70.0)
+    
     var counter = 0
     
+    var loserImageView: UIImageView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,7 +60,7 @@ class GameViewController: UIViewController {
         
 
         
-        timer = NSTimer.scheduledTimerWithTimeInterval(1.0/60.0, target: self, selector: #selector(updatePositions), userInfo: nil, repeats: true)
+        timer = NSTimer.scheduledTimerWithTimeInterval(1.0/80.0, target: self, selector: #selector(updatePositions), userInfo: nil, repeats: true)
     }
     
     @objc func updatePositions () {
@@ -136,7 +139,17 @@ class GameViewController: UIViewController {
                 timer?.invalidate()
                 timer = nil
                 
-                self.gameOver()
+                
+                UIView.animateWithDuration(0.5, animations: {
+                    
+                        self.loserImageView!.transform = CGAffineTransformScale(CGAffineTransformIdentity, 5.0, 5.0)
+                    self.loserImageView!.alpha = 0.4
+                    },
+                                           completion: { (finished: Bool) -> Void in
+                                            self.gameOver()
+                })
+                
+                
             }
         }
     }
@@ -144,10 +157,21 @@ class GameViewController: UIViewController {
     func positionViews() {
         var i: Int = 0
         for pos in playerPositions {
-            let playerView = UIImageView(frame: CGRect(x: pos.x - playerDimension / 2.0, y: pos.y - playerDimension / 2.0, width: playerDimension, height: playerDimension))
+            let playerView = UIImageView(frame: CGRect(x: pos.x - playerRenderDimension / 2.0, y: pos.y - playerRenderDimension / 2.0, width: playerRenderDimension, height: playerRenderDimension))
             playerView.image = UIImage(named: playerImageNames[i])
             //playerView.backgroundColor = UIColor.greenColor() //
+            
+            playerView.layer.shadowColor = UIColor.blackColor().CGColor
+            playerView.layer.shadowOpacity = 1.0
+            playerView.layer.shadowOffset = CGSize(width: 2.0, height: 2.0)
+            playerView.layer.shadowRadius = 4
+            
             self.view.addSubview(playerView)
+            
+            if i==1 {
+                loserImageView = playerView
+            }
+            
             i++
         }
         
@@ -156,9 +180,13 @@ class GameViewController: UIViewController {
         enemyImageView = UIImageView(frame: CGRect(x: enemyPosition.x - enemyRenderDimension / 2.0, y: enemyPosition.y - enemyRenderDimension / 2.0, width: enemyRenderDimension, height: enemyRenderDimension))
         enemyImageView!.image = UIImage(named: "Enemy")
         //enemyImageView!.backgroundColor = UIColor.redColor() //
+        
+        enemyImageView!.layer.shadowColor = UIColor.blackColor().CGColor
+        enemyImageView!.layer.shadowOpacity = 1.0
+        enemyImageView!.layer.shadowOffset = CGSize(width: 2.0, height: 2.0)
+        enemyImageView!.layer.shadowRadius = 4
+        
         self.view.addSubview(enemyImageView!)
-        
-        
     }
     
     func gameOver() {
